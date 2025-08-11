@@ -1,0 +1,33 @@
+
+/* estilo geral - tons quentes */
+:root{
+    --burgundy:#8b0000;
+    --terra:#a0522d;
+    --cream:#fff4e6;
+    --text:#4b2e2b;
+    --gold:#b8860b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background-color:#fff8f0;color:var(--text);}
+.header{background:linear-gradient(90deg,var(--burgundy),var(--terra));color:#fff;padding:20px 15px;text-align:center;}
+.header h1{margin:0;font-size:28px;letter-spacing:1px}
+.header p{margin:6px 0 0;}
+nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;}
+.container{max-width:1100px;margin:25px auto;padding:0 15px;}
+.hero{background:var(--cream);padding:30px;border-radius:10px;border:1px solid #eed7c1;text-align:center}
+.plans{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.card{background:#fff;border-radius:10px;padding:18px;border:1px solid #ead2b8;width:260px;box-shadow:0 6px 18px rgba(75,46,43,0.06)}
+.card h3{color:var(--burgundy);margin-top:0}
+.btn{display:inline-block;background:var(--burgundy);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+.footer{background:var(--burgundy);color:white;padding:14px;text-align:center;margin-top:30px}
+.acervo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.book{background:linear-gradient(180deg, #fff9f6, #fff4e6);padding:12px;border-radius:8px;border:1px solid #eed7c1}
+.book h4{margin:6px 0 4px}
+.meta{font-size:13px;color:#6b4a45}
+.search-row{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.search-row input{padding:10px;border-radius:8px;border:1px solid #dcbfa6;width:320px}
+@media(max-width:600px){.plans{flex-direction:column}.card{width:100%}nav{gap:8px}}
+.form-control{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.form-control input,.form-control textarea{padding:10px;border-radius:8px;border:1px solid #dcbfa6}
+.notice{background:#fffbf2;border-left:4px solid var(--gold);padding:10px;border-radius:6px;margin-top:12px}
