@@ -45,3 +45,7 @@ checkbox2.addEventListener('change', function() {
     checkbox1.disabled = false;
   }
 });
+
+function pix() {
+  open (assinaturapix.html)
+}

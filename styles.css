@@ -15,7 +15,7 @@ body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;backg
 nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap}
 nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;}
 .container{max-width:1100px;margin:25px auto;padding:0 15px;}
-.hero{background:var(--cream);padding:30px;border-radius:10px;border:1px solid #eed7c1;text-align:center}
+.hero{background: url(uniaoliteraria_assets/Gemini_Generated_Image_7vo9377vo9377vo9.png) ;padding:30px;border-radius:10px;border:1px solid #eed7c1;text-align:center}
 .plans{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:20px}
 .card{background:#fff;border-radius:10px;padding:18px;border:1px solid #ead2b8;width:260px;box-shadow:0 6px 18px rgba(75,46,43,0.06)}
 .card h3{color:var(--burgundy);margin-top:0}
@@ -31,3 +31,20 @@ nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-r
 .form-control{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
 .form-control input,.form-control textarea{padding:10px;border-radius:8px;border:1px solid #dcbfa6}
 .notice{background:#fffbf2;border-left:4px solid var(--gold);padding:10px;border-radius:6px;margin-top:12px}
+
+
+button#btnpix {
+    background: url(uniaoliteraria_assets/Gemini_Generated_Image_7vo9377vo9377vo9.png)
+}
+#imgpix {
+    width: 100px;
+    height: 75px;
+}
+#imgcard {
+    width: 100px;
+    height: 75px;
+}
+#imgboleto{
+    width: 100px;
+    height: 75px;
+}

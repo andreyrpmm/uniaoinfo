@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contato - União Literária</title><link rel="stylesheet" href="styles.css"></head>
 <body>
-<header class="header"><img src="uniaoliteraria_assets/logo.svg" alt="logo" style="height:64px;margin-bottom:8px;"><h1>União Literária</h1><p>Contato</p></header>
+<header class="header">
+  <!--<img src="uniaoliteraria_assets/logo.svg" alt="logo" style="height:64px;margin-bottom:8px;">-->
+  <h1>União Literária</h1><p>Contato</p></header>
+  <link rel="stylesheet" href="style.css">
 <nav>
   <a href="index.html">Início</a>
   <a href="acervo.html">Acervo</a>
@@ -11,19 +14,17 @@
 </nav>
 <main class="container">
   <section>
+
     <h2>Forma de Pagamento</h2>
-    <p>Insira os dados do seu cartão abaixo.</p>
-    <form id="contactForm" method="post" action="/contact">
-      <div class="form-control"><label>Nome Completo</label><input placeholder="Seu nome"></div>
-      <div class="form-control"><label>Número do Cartão</label><input placeholder="Ex.: 1234 5678 9101 1213"></div>
-      <div class="form-control"><label>Data de validade</label><input placeholder="Ex.: 01/35"></div>
-      <div class="form-control"><label>CVC</label><input placeholder="Ex.: 123"></div>
-      <div><p>Forma de pagamento: <strong>Crédito:</strong><input type="checkbox" name="btnpag" id="checkbox1"><strong>Débito:</strong> <input type="checkbox" name="btnpag" id="checkbox2"></p></div>
-      <p><input type="checkbox" id="checkpolitic"> Eu aceito os termos de políticas e privacidade da União Literária!</p>
-      <button class="btn" type="submit" >Enviar</button>
+    <p>Selecione a Forma de Pagamento:</p>
+    <div id="pagamento2">
+      <p>
+        <a href="assinaturapix.html"><img src="uniaoliteraria_assets/360_F_704717584_66pmpeTKQMoEnlo06hpYKeUhPJ6SnhND.jpg" alt="" id="imgpix"></a>
+        <a href="assinaturacartao.html"><img src="uniaoliteraria_assets/creditcard.jpg" alt="" id="imgcard"></a>
+        <a href="assinaturaboleto.html"><img src="uniaoliteraria_assets/boleto-simbolo.png" alt="" id="imgboleto"></a>
+      </p>
     </form>
     <div style="margin-top:16px;">
-      <p>Ou nos ache no Instagram: <strong>@uniaoliteraria</strong></p>
     </div>
   </section>
 </main>
