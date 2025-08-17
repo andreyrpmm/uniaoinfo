@@ -1,5 +1,6 @@
 // scripts mínimos: busca no acervo e navegação suave
-document.getElementById("contactForm").addEventListener("submit", async function(e){e.preventDefault();const data={name:this.querySelector("input").value,email:this.querySelectorAll("input")[1].value,message:this.querySelector("textarea").value};try{const res=await fetch("/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});const j=await res.json();alert(j.message);}catch(err){alert("Erro ao enviar. Este é um protótipo.");}});
+document.getElementById("contactForm")
+document.addEventListener("submit", async function(e){e.preventDefault();const data={name:this.querySelector("input").value,email:this.querySelectorAll("input")[1].value,message:this.querySelector("textarea").value};try{const res=await fetch("/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});const j=await res.json();alert(j.message);}catch(err){alert("Erro ao enviar. Este é um protótipo.");}});
 
 document.addEventListener('DOMContentLoaded', function(){
     const searchInput = document.getElementById('searchInput');
@@ -26,7 +27,7 @@ const checkbox1 = document.getElementById('checkbox1');
 const checkbox2 = document.getElementById('checkbox2');
 
 // Adiciona um "listener" para o evento 'change' do primeiro checkbox
-checkbox1.addEventListener('change', function() {
+checkbox1.document.addEventListener('change', function() {
   if (this.checked) {
     // Se o checkbox1 estiver marcado, desabilita o checkbox2
     checkbox2.disabled = true;
@@ -37,7 +38,7 @@ checkbox1.addEventListener('change', function() {
 });
 
 // Adiciona um "listener" para o evento 'change' do segundo checkbox
-checkbox2.addEventListener('change', function() {
+checkbox2.document.addEventListener('change', function() {
   if (this.checked) {
     // Se o checkbox2 estiver marcado, desabilita o checkbox1
     checkbox1.disabled = true;
