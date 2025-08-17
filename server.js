@@ -1,32 +1,4 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const bcrypt = require("bcryptjs");
-const cors = require("cors");
-const { MongoClient } = require("mongodb");
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static("site"));
-
-// 🔹 pega a string do MongoDB do Render (variável de ambiente)
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri);
-
-let usersCollection;
-
-// conectar no banco
-async function connectDB() {
-  try {
-    await client.connect();
-    const db = client.db("uniliteraria");
-    usersCollection = db.collection("users");
-    console.log("✅ Conectado ao MongoDB Atlas");
-  } catch (err) {
-    console.error("❌ Erro ao conectar no MongoDB:", err);
-  }
-}
-connectDB();
 
 // rota de registro
 app.post("/register", async (req,res)=>{
