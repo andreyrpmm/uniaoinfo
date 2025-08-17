@@ -32,7 +32,56 @@
 <footer class="footer">
   <p>© União Literária 2025</p>
 </footer>
-<script src="scripts.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
+<script>
+  // ===================================================================
+  // !! IMPORTANTE !!
+  // SUBSTITUA PELAS SUAS CHAVES REAIS DO FIREBASE
+  const firebaseConfig = {
+  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+  projectId: "uniaoliteraria-1a1e3",
+  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+  messagingSenderId: "141287274557",
+  appId: "1:141287274557:web:824de4b0801cf329f29254",
+  measurementId: "G-Y1GTM2TG6T"
+};
+  // ===================================================================
+
+  // Inicializa o Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Pega os elementos do formulário
+  const registerForm = document.getElementById("registerForm");
+  const emailInput = document.getElementById("register-email");
+  const passwordInput = document.getElementById("register-password");
+
+  registerForm.addEventListener("submit", function(e) {
+    e.preventDefault(); // Impede o recarregamento da página
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    // Usa a função do Firebase para criar um usuário
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Registro bem-sucedido!
+        console.log("Usuário registrado com sucesso:", userCredential.user);
+        alert("Conta criada com sucesso! Você será redirecionado para o login.");
+        // Redireciona o usuário para a página de login
+        window.location.href = "login.html"; 
+      })
+      .catch((error) => {
+        // Ocorreu um erro
+        const errorMessage = error.message;
+        console.error("Erro ao registrar:", errorMessage);
+        alert("Erro ao criar conta: " + errorMessage);
+      });
+  });
+</script>
 </body>
+</html>
