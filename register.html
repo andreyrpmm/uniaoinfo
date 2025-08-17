@@ -17,12 +17,12 @@
     <h2>Crie sua conta</h2>
     <form id="registerForm">
       <div class="form-control">
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <label for="register-email">Email</label>
+        <input type="email" id="register-email" name="email" required>
       </div>
       <div class="form-control">
-        <label>Senha</label>
-        <input type="password" name="password" required>
+        <label for="register-password">Senha</label>
+        <input type="password" id="register-password" name="password" required>
       </div>
       <button class="btn" type="submit">Registrar</button>
     </form>
@@ -33,28 +33,28 @@
   <p>© União Literária 2025</p>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
 <script>
-document.getElementById("registerForm").addEventListener("submit", async function(e){
-  e.preventDefault();
-  const formData = {
-    email: this.email.value,
-    password: this.password.value
-  };
-  try {
-    const res = await fetch("https://uniaoliteraria.onrender.com", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(formData)
-    });
-    const data = await res.json();
-    alert(data.message);
-    if(data.ok){
-      window.location.href = "login.html";
-    }
-  } catch(err){
-    alert("Erro de conexão com servidor.");
-  }
-});
-</script>
-</body>
-</html>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+  projectId: "uniaoliteraria-1a1e3",
+  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+  messagingSenderId: "141287274557",
+  appId: "1:141287274557:web:824de4b0801cf329f29254",
+  measurementId: "G-Y1GTM2TG6T"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
