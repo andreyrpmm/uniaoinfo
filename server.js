@@ -4,13 +4,13 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 
-const app = express(); // <-- AQUI criamos o app do Express
+const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("site"));
 
-// 🔹 coloque sua connection string do Atlas aqui
-const uri = "mongodb+srv://andreyrichardson45:<db_password>@uniaolit.judllla.mongodb.net/";
+// 🔹 pega a string do MongoDB do Render (variável de ambiente)
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
 let usersCollection;
@@ -23,7 +23,7 @@ async function connectDB() {
     usersCollection = db.collection("users");
     console.log("✅ Conectado ao MongoDB Atlas");
   } catch (err) {
-    console.error("Erro ao conectar no MongoDB:", err);
+    console.error("❌ Erro ao conectar no MongoDB:", err);
   }
 }
 connectDB();
@@ -53,5 +53,6 @@ app.post("/login", async (req,res)=>{
   }
 });
 
-// iniciar servidor
-app.listen(3000, ()=> console.log("🚀 Servidor rodando em http://localhost:3000"));
+// iniciar servidor na porta do Render ou 3000 localmente
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, ()=> console.log(`🚀 Servidor rodando na porta ${PORT}`));
