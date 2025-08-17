@@ -54,27 +54,28 @@
 <footer class="footer">
   <p>© União Literária 2025</p>
 </footer>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
 <script>
   // ===================================================================
   // COLE SUAS CHAVES DO FIREBASE AQUI
   const firebaseConfig = {
-  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
-  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
-  projectId: "uniaoliteraria-1a1e3",
-  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
-  messagingSenderId: "141287274557",
-  appId: "1:141287274557:web:824de4b0801cf329f29254",
-  measurementId: "G-Y1GTM2TG6T"
+    apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+    authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+    projectId: "uniaoliteraria-1a1e3",
+    storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+    messagingSenderId: "141287274557",
+    appId: "1:141287274557:web:824de4b0801cf329f29254",
+    measurementId: "G-Y1GTM2TG6T"
 };
   // ===================================================================
 
   // Inicialização
   firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+
+  // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
+  const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
 
   // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
   const loginContainer = document.getElementById('login-container');
@@ -103,7 +104,7 @@
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         alert("Login realizado com sucesso!");
-        window.location.href = "index.html"; // Redireciona para a página principal
+        window.location.href = "index.html";
       })
       .catch((error) => alert("Erro ao fazer login: " + error.message));
   });
@@ -117,11 +118,8 @@
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         alert("Conta criada com sucesso! Por favor, faça o login.");
-        // Leva o usuário de volta para a tela de login
         showLoginLink.click();
       })
       .catch((error) => alert("Erro ao criar conta: " + error.message));
   });
 </script>
-</body>
-</html>
