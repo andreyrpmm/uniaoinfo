@@ -1,4 +1,6 @@
 // scripts mínimos: busca no acervo e navegação suave
+document.getElementById("contactForm").addEventListener("submit", async function(e){e.preventDefault();const data={name:this.querySelector("input").value,email:this.querySelectorAll("input")[1].value,message:this.querySelector("textarea").value};try{const res=await fetch("/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});const j=await res.json();alert(j.message);}catch(err){alert("Erro ao enviar. Este é um protótipo.");}});
+
 document.addEventListener('DOMContentLoaded', function(){
     const searchInput = document.getElementById('searchInput');
     if(searchInput){
