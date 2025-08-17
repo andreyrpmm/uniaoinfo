@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - União Literária</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="header">
+  <h1>União Literária</h1>
+  <p>Login</p>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Área do Assinante</h2>
+    <form id="loginForm">
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="form-control">
+        <label>Senha</label>
+        <input type="password" name="password" required>
+      </div>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© União Literária 2025</p>
+</footer>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const formData = {
+    email: this.email.value,
+    password: this.password.value
+  };
+  try {
+    const res = await fetch("http://localhost:3000/login", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(formData)
+    });
+    const data = await res.json();
+    if(data.ok){
+      alert("Login realizado com sucesso!");
+      // redireciona para a área de assinante
+      window.location.href = "acervo.html";
+    } else {
+      alert("Credenciais inválidas.");
+    }
+  } catch(err){
+    alert("Erro de conexão com o servidor.");
+  }
+});
+</script>
+</body>
+</html>

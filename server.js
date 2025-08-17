@@ -1,31 +1,57 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
+const cors = require("cors");
+const { MongoClient } = require("mongodb");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Permitir requisições de qualquer origem (CORS)
+const app = express(); // <-- AQUI criamos o app do Express
 app.use(cors());
-
-// Interpretar JSON e formulários
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static("site"));
 
-// Servir arquivos estáticos da pasta 'site'
-app.use(express.static('site'));
+// 🔹 coloque sua connection string do Atlas aqui
+const uri = "mongodb+srv://andreyrichardson45:<db_password>@uniaolit.judllla.mongodb.net/";
+const client = new MongoClient(uri);
 
-// Rota para receber formulário
-app.post('/contact', (req, res) => {
-  const { name, email, message } = req.body;
+let usersCollection;
 
-  console.log(`Contato recebido: ${name} | ${email} | ${message}`);
+// conectar no banco
+async function connectDB() {
+  try {
+    await client.connect();
+    const db = client.db("uniliteraria");
+    usersCollection = db.collection("users");
+    console.log("✅ Conectado ao MongoDB Atlas");
+  } catch (err) {
+    console.error("Erro ao conectar no MongoDB:", err);
+  }
+}
+connectDB();
 
-  // Resposta pro navegador
-  res.json({ ok: true, message: 'Mensagem recebida. Responderemos em até 48h.' });
+// rota de registro
+app.post("/register", async (req,res)=>{
+  const { email, password } = req.body;
+  const hashed = bcrypt.hashSync(password, 10);
+  try {
+    await usersCollection.insertOne({ email, password: hashed });
+    res.json({ok:true, message:"Usuário registrado com sucesso"});
+  } catch (err) {
+    res.json({ok:false, message:"Usuário já existe"});
+  }
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+// rota de login
+app.post("/login", async (req,res)=>{
+  const { email, password } = req.body;
+  const user = await usersCollection.findOne({ email });
+  if(!user) return res.json({ok:false});
+  const match = bcrypt.compareSync(password, user.password);
+  if(match){
+    res.json({ok:true});
+  } else {
+    res.json({ok:false});
+  }
 });
+
+// iniciar servidor
+app.listen(3000, ()=> console.log("🚀 Servidor rodando em http://localhost:3000"));
