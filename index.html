@@ -61,7 +61,38 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
-<script src="script.js"></script> 
+<script src="script.js"></script>
+
+<script>
+  // ===================================================================
+  // Cole aqui o mesmo firebaseConfig que você usou nas outras páginas
+  const firebaseConfig = {
+  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+  projectId: "uniaoliteraria-1a1e3",
+  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+  messagingSenderId: "141287274557",
+  appId: "1:141287274557:web:824de4b0801cf329f29254",
+  measurementId: "G-Y1GTM2TG6T"
+};
+  // ===================================================================
+
+  // Inicializa o Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Esse é o "porteiro". Ele verifica o estado do login assim que a página carrega.
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // O usuário está logado. Deixa ele ver a página.
+      console.log("Usuário autenticado:", user.email);
+    } else {
+      // O usuário NÃO está logado. Redireciona para a página de login.
+      console.log("Acesso negado. Redirecionando para login.");
+      window.location.href = "auth.html"; // Mudei para auth.html, o nome da nossa nova página unificada
+    }
+  });
+</script>
 </body>
 </html>
 </body>
