@@ -10,6 +10,8 @@
 <header class="header">
   <h1>União Literária</h1>
   <p>Conectando corações, página por página</p>
+  <button id="logout-button" style="display: none;">Sair</button>
+
 </header>
 <nav>
   <a href="index.html">Início</a>
@@ -62,7 +64,7 @@
 
 <script>
   // ===================================================================
-  // Cole aqui o mesmo firebaseConfig que você usou nas outras páginas
+  // Cole aqui o mesmo firebaseConfig
   const firebaseConfig = {
     apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
     authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
@@ -76,19 +78,39 @@
 
   // Inicializa o Firebase
   firebase.initializeApp(firebaseConfig);
-  
-  // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
-  const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
+  const auth = firebase.auth();
+
+  // Pega o botão de logout que criamos no HTML
+  const logoutButton = document.getElementById('logout-button');
 
   // O "porteiro" que verifica o estado do login
   auth.onAuthStateChanged((user) => {
     if (user) {
       // O usuário está logado.
       console.log("Usuário autenticado:", user.email);
+
+      // NOVO: Mostra o botão de "Sair"
+      logoutButton.style.display = 'block';
+
     } else {
       // O usuário NÃO está logado. Redireciona para a página de autenticação.
       console.log("Acesso negado. Redirecionando para login.");
       window.location.href = "auth.html";
     }
+  });
+
+  // NOVO: Adiciona a ação de clique para o botão de logout
+  logoutButton.addEventListener('click', () => {
+    auth.signOut()
+      .then(() => {
+        // Logout bem-sucedido
+        alert("Você saiu da sua conta.");
+        // Redireciona para a página de login após o logout
+        window.location.href = "auth.html";
+      })
+      .catch((error) => {
+        // Ocorreu um erro
+        console.error("Erro ao fazer logout:", error);
+      });
   });
 </script>
