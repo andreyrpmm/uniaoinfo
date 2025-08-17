@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Login - União Literária</title>
+  <title>Registrar - União Literária</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="header">
   <h1>União Literária</h1>
-  <p>Login</p>
+  <p>Cadastro</p>
 </header>
 
 <main class="container">
   <section>
-    <h2>Área do Assinante</h2>
-    <form id="loginForm">
+    <h2>Crie sua conta</h2>
+    <form id="registerForm">
       <div class="form-control">
         <label>Email</label>
         <input type="email" name="email" required>
@@ -24,9 +24,8 @@
         <label>Senha</label>
         <input type="password" name="password" required>
       </div>
-      <button class="btn" type="submit">Entrar</button>
+      <button class="btn" type="submit">Registrar</button>
     </form>
-    <p>Ainda não tem conta? <a href="register.html">Cadastre-se aqui</a></p>
   </section>
 </main>
 
@@ -35,24 +34,22 @@
 </footer>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", async function(e){
+document.getElementById("registerForm").addEventListener("submit", async function(e){
   e.preventDefault();
   const formData = {
     email: this.email.value,
     password: this.password.value
   };
   try {
-    const res = await fetch("http://localhost:3000/login", {
+    const res = await fetch("http://localhost:3000/register", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(formData)
     });
     const data = await res.json();
+    alert(data.message);
     if(data.ok){
-      alert("Login realizado com sucesso!");
-      window.location.href = "acervo.html"; // redireciona para o acervo
-    } else {
-      alert("Credenciais inválidas.");
+      window.location.href = "login.html";
     }
   } catch(err){
     alert("Erro de conexão com servidor.");
