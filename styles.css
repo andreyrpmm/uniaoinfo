@@ -75,3 +75,15 @@ button#btnpix {
     cursor: pointer;
     border-radius: 5px;
 }
+#btninicio {
+    text-align: center;
+}
+#btnplanos {
+    text-align: center;
+}
+#btnacervos {
+    text-align: center;
+}
+#btncontato {
+    text-align: center;
+}
