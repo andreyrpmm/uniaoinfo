@@ -1,8 +1,4 @@
 
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 // scripts mínimos: busca no acervo e navegação suave
 document.addEventListener('DOMContentLoaded', function(){
     const searchInput = document.getElementById('searchInput');
