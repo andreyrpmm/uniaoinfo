@@ -47,7 +47,7 @@ function startRealtimeChat(currentUser) {
   messagesRef.onSnapshot(snapshot => {
     // Limpa o container de mensagens antigas
     messagesContainer.innerHTML = '';
-    
+
     snapshot.forEach(doc => {
       const message = doc.data();
       // Cria um elemento HTML para a mensagem
@@ -56,7 +56,7 @@ function startRealtimeChat(currentUser) {
       messageElement.innerHTML = `<strong>${message.userEmail}:</strong> ${message.text}`;
       messagesContainer.appendChild(messageElement);
     });
-    
+
     // Rola para a mensagem mais recente
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   });
@@ -75,12 +75,12 @@ function startRealtimeChat(currentUser) {
       userId: currentUser.uid,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
-    .then(() => {
-      // Limpa o campo de input após o envio
-      messageInput.value = '';
-    })
-    .catch(error => {
-      console.error("Erro ao enviar mensagem: ", error);
-    });
+      .then(() => {
+        // Limpa o campo de input após o envio
+        messageInput.value = '';
+      })
+      .catch(error => {
+        console.error("Erro ao enviar mensagem: ", error);
+      });
   });
 }
