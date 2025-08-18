@@ -76,14 +76,14 @@ button#btnpix {
     border-radius: 5px;
 }
 #btninicio {
-    text-align: center;
+    align-items: center;
 }
 #btnplanos {
-    text-align: center;
+    align-items: center;
 }
 #btnacervos {
-    text-align: center;
+    align-items: center;
 }
 #btncontato {
-    text-align: center;
+    align-items: center;
 }
