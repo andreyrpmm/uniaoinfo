@@ -33,14 +33,14 @@
         </div>
         <button class="btn" type="submit">Entrar</button>
       </form>
-      <p>Ainda não tem conta? <a href="register.html" id="show-register-link">Cadastre-se aqui</a></p>
+      <p>Ainda não tem conta? <a href="#" id="show-register-link">Cadastre-se aqui</a></p>
     </section>
 
     <section id="register-container" class="hide">
       <h2>Crie sua conta</h2>
       <form id="registerForm">
         <div class="form-control">
-          <label for="register-name">Nome e</label>
+          <label for="register-name">Nome e Sobrenome</label>
           <input type="text" id="register-name" required>
         </div>
         <div class="form-control">
@@ -53,7 +53,7 @@
         </div>
         <button class="btn" type="submit">Registrar</button>
       </form>
-      <p>Já tem uma conta? <a href="auth.html" id="show-login-link">Faça o login</a></p>
+      <p>Já tem uma conta? <a href="#" id="show-login-link">Faça o login</a></p>
     </section>
   </main>
 
@@ -81,8 +81,7 @@
     firebase.initializeApp(firebaseConfig);
 
     // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
-    const auth = firebase.auth();
-    const db = firebase.firestore(); 
+    const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
 
     // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
     const loginContainer = document.getElementById('login-container');
@@ -118,29 +117,15 @@
 
     // --- LÓGICA DO REGISTRO ---
     const registerForm = document.getElementById("registerForm");
-registerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("register-name").value; // Pega o nome
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
-
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Usuário criado com sucesso na autenticação!
-      const user = userCredential.user;
-
-      // AGORA, SALVAMOS O NOME DO USUÁRIO NO FIRESTORE
-      // Usamos o ID do usuário (user.uid) como ID do documento
-      return db.collection("users").doc(user.uid).set({
-        name: name,
-        email: email
-      });
-    })
-    .then(() => {
-        // Dados salvos no Firestore com sucesso!
-        alert("Conta criada com sucesso! Por favor, faça o login.");
-        showLoginLink.click();
-    })
-    .catch((error) => alert("Erro ao criar conta: " + error.message));
-});
+    registerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          alert("Conta criada com sucesso! Por favor, faça o login.");
+          showLoginLink.click();
+        })
+        .catch((error) => alert("Erro ao criar conta: " + error.message));
+    });
   </script>
