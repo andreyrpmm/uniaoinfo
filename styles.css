@@ -9,11 +9,39 @@
 }
 *{box-sizing:border-box}
 body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background-color:#fff8f0;color:var(--text);}
-.header{background:linear-gradient(90deg,var(--burgundy),var(--terra));color:#fff;padding:20px 15px;text-align:center;}
+.header {
+  display: flex; /* Transforma o cabeçalho em um container flexível */
+  justify-content: space-between; /* Empurra os itens para as extremidades */
+  align-items: center; /* Alinha os itens verticalmente no centro */
+  padding: 15px 30px; /* Adiciona um espaçamento interno (ajuste se necessário) */
+  background-color: #5D2B1E; /* Cor de fundo marrom/vermelho (ajuste para sua cor exata) */
+  color: white; /* Cor do texto */
+}
+.header .logo-container {
+  /* Mantém o logo à esquerda */
+  flex: 1; 
+}
+.header nav {
+  flex: 2; /* Faz a navegação ocupar mais espaço no centro */
+  text-align: center; /* Centraliza o texto dentro da área da navegação */
+}
+.header nav ul {
+  display: inline-flex; /* Alinha os itens da lista horizontalmente */
+  list-style: none; /* Remove as bolinhas da lista */
+  margin: 0;
+  padding: 0;
+  gap: 20px; /* Cria um espaço entre os links */
+}
+
+.header nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
 .header h1{margin:0;font-size:28px;letter-spacing:1px}
 .header p{margin:6px 0 0;}
-nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;}
+/* nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap} 
+nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;} */
 .container{max-width:1100px;margin:25px auto;padding:0 15px;}
 .hero{background: url(uniaoliteraria_assets/Gemini_Generated_Image_7vo9377vo9377vo9.png) ;padding:30px;border-radius:10px;border:1px solid #eed7c1;text-align:center}
 .plans{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:20px}
