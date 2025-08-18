@@ -86,3 +86,16 @@ auth.onAuthStateChanged((user) => {
         // Ex: Redireciona se for uma página protegida
     }
 });
+ logoutButton.addEventListener('click', () => {
+    auth.signOut()
+      .then(() => {
+        // Logout bem-sucedido
+        alert("Você saiu da sua conta.");
+        // Redireciona para a página de login após o logout
+        window.location.href = "auth.html";
+      })
+      .catch((error) => {
+        // Ocorreu um erro
+        console.error("Erro ao fazer logout:", error);
+      });
+  });
