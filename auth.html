@@ -81,7 +81,8 @@
     firebase.initializeApp(firebaseConfig);
 
     // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
-    const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
+    const auth = firebase.auth();
+    const db = firebase.firestore(); 
 
     // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
     const loginContainer = document.getElementById('login-container');
