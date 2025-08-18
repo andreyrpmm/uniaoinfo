@@ -128,3 +128,33 @@ button#btnpix {
 }
 
 
+/* Estilo para o link "Esqueci minha senha" na página de autenticação */
+#forgot-password-link {
+  color: #555; /* Um cinza escuro para não chamar tanta atenção */
+  text-decoration: none; /* Remove o sublinhado padrão */
+  transition: color 0.3s ease; /* Adiciona uma transição suave */
+}
+
+#forgot-password-link:hover {
+  color: #A94442; /* Usa a cor vinho do tema ao passar o mouse */
+  text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse */
+}
+/* Estilo para o botão "Abrir Chat" nos cards dos livros */
+.btn-chat {
+  display: inline-block; /* Permite definir padding e margens */
+  background-color: #A94442; /* A cor vinho/vermelho escuro do tema */
+  color: white;
+  padding: 8px 16px; /* Espaçamento interno (altura e largura) */
+  text-align: center;
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-weight: bold;
+  border-radius: 5px; /* Bordas arredondadas */
+  border: none; /* Remove qualquer borda padrão */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-chat:hover {
+  background-color: #8c3232; /* Um tom mais escuro ao passar o mouse */
+  transform: translateY(-2px); /* Efeito de "levantar" o botão */
+}
