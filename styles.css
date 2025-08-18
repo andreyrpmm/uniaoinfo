@@ -126,11 +126,5 @@ button#btnpix {
 #botao:hover {
   background-color: #8b0000;
 }
-#logout-button {
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #8b0000;
-    color: white;
-    border-radius: 5px;
-}
+
 
