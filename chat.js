@@ -21,7 +21,7 @@ const messageInput = document.getElementById('message-input');
 // --- Pega o ID do Livro da URL ---
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('bookId');
-bookTitleElement.textContent = `Chat do Livro: ${bookId.replace(/-/g, ' ')}`;
+bookTitleElement.textContent = `Bate-papo: ${bookId.replace(/-/g, ' ')}`;
 
 // --- Lógica Principal do Chat ---
 auth.onAuthStateChanged(async user => { // Adicionamos async aqui
