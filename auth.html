@@ -79,67 +79,64 @@
 
     // Inicialização
     firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore(); // <-- A LINHA QUE ESTAVA FALTANDO
 
-    // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
-    const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
+  // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
+  const loginContainer = document.getElementById('login-container');
+  const registerContainer = document.getElementById('register-container');
+  const showRegisterLink = document.getElementById('show-register-link');
+  const showLoginLink = document.getElementById('show-login-link');
 
-    // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
-    const loginContainer = document.getElementById('login-container');
-    const registerContainer = document.getElementById('register-container');
-    const showRegisterLink = document.getElementById('show-register-link');
-    const showLoginLink = document.getElementById('show-login-link');
+  showRegisterLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginContainer.classList.add('hide');
+    registerContainer.classList.remove('hide');
+  });
 
-    showRegisterLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      loginContainer.classList.add('hide');
-      registerContainer.classList.remove('hide');
-    });
+  showLoginLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    registerContainer.classList.add('hide');
+    loginContainer.classList.remove('hide');
+  });
 
-    showLoginLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      registerContainer.classList.add('hide');
-      loginContainer.classList.remove('hide');
-    });
+  // --- LÓGICA DO LOGIN ---
+  const loginForm = document.getElementById("loginForm");
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        alert("Login realizado com sucesso!");
+        window.location.href = "index.html";
+      })
+      .catch((error) => alert("Erro ao fazer login: " + error.message));
+  });
 
-    // --- LÓGICA DO LOGIN ---
-    const loginForm = document.getElementById("loginForm");
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("Login realizado com sucesso!");
-          window.location.href = "index.html";
-        })
-        .catch((error) => alert("Erro ao fazer login: " + error.message));
-    });
-
-    // --- LÓGICA DO REGISTRO ---
-    const registerForm = document.getElementById("registerForm");
-registerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("register-name").value; // Pega o nome
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
-
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Usuário criado com sucesso na autenticação!
-      const user = userCredential.user;
-
-      // AGORA, SALVAMOS O NOME DO USUÁRIO NO FIRESTORE
-      // Usamos o ID do usuário (user.uid) como ID do documento
-      return db.collection("users").doc(user.uid).set({
-        name: name,
-        email: email
-      });
-    })
-    .then(() => {
-        // Dados salvos no Firestore com sucesso!
-        alert("Conta criada com sucesso! Por favor, faça o login.");
-        showLoginLink.click();
-    })
-    .catch((error) => alert("Erro ao criar conta: " + error.message));
-});
-  </script>
+  // --- LÓGICA DO REGISTRO ---
+  const registerForm = document.getElementById("registerForm");
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("register-name").value;
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // Agora a variável "db" existe e esta linha vai funcionar
+        return db.collection("users").doc(user.uid).set({
+          name: name,
+          email: email
+        });
+      })
+      .then(() => {
+          alert("Conta criada com sucesso! Por favor, faça o login.");
+          showLoginLink.click();
+      })
+      .catch((error) => alert("Erro ao criar conta: " + error.message));
+  });
+</script>
+</body>
+</html>
