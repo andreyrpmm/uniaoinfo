@@ -1,26 +1,26 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
-  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
-  projectId: "uniaoliteraria-1a1e3",
-  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
-  messagingSenderId: "141287274557",
-  appId: "1:141287274557:web:824de4b0801cf329f29254",
-  measurementId: "G-Y1GTM2TG6T"
+    apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+    authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+    projectId: "uniaoliteraria-1a1e3",
+    storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+    messagingSenderId: "141287274557",
+    appId: "1:141287274557:web:824de4b0801cf329f29254",
+    measurementId: "G-Y1GTM2TG6T"
 };
-  // ===================================================================
+// ===================================================================
 
-  // Inicialização
-  firebase.initializeApp(firebaseConfig);
+// Inicialização
+firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // --- Funcionalidade: Busca no Acervo ---
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const q = this.value.toLowerCase();
             document.querySelectorAll('.book').forEach(b => {
                 const title = b.querySelector('h4').innerText.toLowerCase();
@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Funcionalidade: Navegação Suave (Scroll) ---
     document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
+        a.addEventListener('click', function (e) {
             e.preventDefault();
             const targetElement = document.querySelector(this.getAttribute('href'));
-            if(targetElement) {
+            if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById("contactForm");
     // Só adiciona o "ouvinte" se o formulário existir nesta página
     if (contactForm) {
-        contactForm.addEventListener("submit", async function(e) {
+        contactForm.addEventListener("submit", async function (e) {
             e.preventDefault();
             const formData = {
                 name: this.querySelector("input[name='name']").value, // Seletor mais específico
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // --- Função para abrir a página de pagamento PIX ---
 function pix() {
-  open("assinaturapix.html", "_self"); // Abre na mesma aba
+    open("assinaturapix.html", "_self"); // Abre na mesma aba
 }
 
 
@@ -79,23 +79,22 @@ auth.onAuthStateChanged((user) => {
         // O usuário está logado!
         console.log("Usuário está logado:", user.email);
         // Ex: Mostra botão de logout, esconde de login
-        
+
     } else {
         // O usuário não está logado.
         console.log("Nenhum usuário logado.");
         // Ex: Redireciona se for uma página protegida
     }
 });
- logoutButton.addEventListener('click', () => {
-    auth.signOut()
-      .then(() => {
-        // Logout bem-sucedido
-        alert("Você saiu da sua conta.");
-        // Redireciona para a página de login após o logout
-        window.location.href = "auth.html";
-      })
-      .catch((error) => {
-        // Ocorreu um erro
-        console.error("Erro ao fazer logout:", error);
-      });
-  });
+if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+        auth.signOut()
+            .then(() => {
+                alert("Você saiu da sua conta.");
+                window.location.href = "auth.html";
+            })
+            .catch((error) => {
+                console.error("Erro ao fazer logout:", error);
+            });
+    });
+}
