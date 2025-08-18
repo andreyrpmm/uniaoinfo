@@ -86,15 +86,35 @@ auth.onAuthStateChanged((user) => {
         // Ex: Redireciona se for uma página protegida
     }
 });
-if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-        auth.signOut()
-            .then(() => {
-                alert("Você saiu da sua conta.");
-                window.location.href = "auth.html";
-            })
-            .catch((error) => {
-                console.error("Erro ao fazer logout:", error);
-            });
-    });
-}
+  const logoutButton = document.getElementById('logout-button');
+
+  // O "porteiro" que verifica o estado do login
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // O usuário está logado.
+      console.log("Usuário autenticado:", user.email);
+
+      // NOVO: Mostra o botão de "Sair"
+      logoutButton.style.display = 'block';
+
+    } else {
+      // O usuário NÃO está logado. Redireciona para a página de autenticação.
+      console.log("Acesso negado. Redirecionando para login.");
+      window.location.href = "auth.html";
+    }
+  });
+
+  // NOVO: Adiciona a ação de clique para o botão de logout
+  logoutButton.addEventListener('click', () => {
+    auth.signOut()
+      .then(() => {
+        // Logout bem-sucedido
+        alert("Você saiu da sua conta.");
+        // Redireciona para a página de login após o logout
+        window.location.href = "auth.html";
+      })
+      .catch((error) => {
+        // Ocorreu um erro
+        console.error("Erro ao fazer logout:", error);
+      });
+  });

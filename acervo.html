@@ -47,7 +47,7 @@
             que o coração não obedece a regras.</p>
           <a class="btn" href="planos.html#gratuito">Ver Amostra</a>
           <a href="chat.html?bookId=o-lado-feio-do-amor" class="btn-chat">
-            Abrir Chat do Livro</a>
+            Abrir Chat</a>
         </div>
         <div class="book">
           <p><img src="uniaoliteraria_assets/livros2/atraves.png" alt="capa"
@@ -281,21 +281,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="scripts.js"></script>
-  <script>
-      logoutButton.addEventListener('click', () => {
-    auth.signOut()
-      .then(() => {
-        // Logout bem-sucedido
-        alert("Você saiu da sua conta.");
-        // Redireciona para a página de login após o logout
-        window.location.href = "auth.html";
-      })
-      .catch((error) => {
-        // Ocorreu um erro
-        console.error("Erro ao fazer logout:", error);
-      });
-  });
-  </script>
+
 </body>
 
 </html>
