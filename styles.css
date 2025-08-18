@@ -10,57 +10,61 @@
 *{box-sizing:border-box}
 body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background-color:#fff8f0;color:var(--text);}
 .header {
-  display: flex;              
-  justify-content: space-between;
-  align-items: center;         
-  padding: 10px 30px;          
-  background-color: #7a2828;   
-  color: white;                 
-  width: 100%;                  
-  box-sizing: border-box;       
+  display: flex;
+  align-items: center; /* Alinha verticalmente os 3 blocos principais */
+  padding: 10px 30px;
+  background-color: #3f1b1b;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-
+/* Transforma os 3 blocos em containers flexíveis também */
 .header-left, .header-center, .header-right {
-  flex: 1; 
+  flex: 1;
+  display: flex; /* <-- MUDANÇA IMPORTANTE */
+  align-items: center; /* <-- MUDANÇA IMPORTANTE */
 }
 
-
+/* Alinha o conteúdo de cada bloco horizontalmente */
 .header-left {
-  text-align: left; 
+  justify-content: flex-start; /* Alinha à esquerda */
 }
-.header-left h1 {
-  margin: 0;
-  font-size: 24px;
-}
-.header-left p {
-  margin: 0;
-  font-size: 12px;
-  color: #f0e6e6; 
-}
-
-
 .header-center {
-  text-align: center;
+  justify-content: center; /* Alinha ao centro */
 }
+.header-right {
+  justify-content: flex-end; /* Alinha à direita */
+}
+
+/* Estilos para o conteúdo (sem muitas alterações) */
+.header-left h1 { margin: 0; font-size: 24px; }
+.header-left p { margin: 0; font-size: 12px; }
 
 .header-center ul {
+  display: flex; /* Mantém os links em linha */
+  gap: 30px;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none; 
-  display: inline-flex;
-  gap: 30px; 
 }
-
 .header-center a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
 
-
-.header-right {
-  text-align: right;
+/* Classe para os botões do header */
+.btn-header {
+  background-color: #A94442;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none; /* Garante que o link "Entrar" não tenha sublinhado */
+  font-size: 1em; /* Garante que o tamanho da fonte seja consistente */
 }
 
 
