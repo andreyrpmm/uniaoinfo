@@ -66,13 +66,9 @@ button#btnpix {
 }
 #logout-button {
     margin-left: auto;
-    display: inline-block;
     padding: 10px 20px;
     background-color: #8b0000;
     color: white;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
     border-radius: 5px;
 }
 #btninicio {
