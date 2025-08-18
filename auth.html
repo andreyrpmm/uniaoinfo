@@ -117,15 +117,29 @@
 
     // --- LÓGICA DO REGISTRO ---
     const registerForm = document.getElementById("registerForm");
-    registerForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("register-email").value;
-      const password = document.getElementById("register-password").value;
-      auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("Conta criada com sucesso! Por favor, faça o login.");
-          showLoginLink.click();
-        })
-        .catch((error) => alert("Erro ao criar conta: " + error.message));
-    });
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("register-name").value; // Pega o nome
+  const email = document.getElementById("register-email").value;
+  const password = document.getElementById("register-password").value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Usuário criado com sucesso na autenticação!
+      const user = userCredential.user;
+
+      // AGORA, SALVAMOS O NOME DO USUÁRIO NO FIRESTORE
+      // Usamos o ID do usuário (user.uid) como ID do documento
+      return db.collection("users").doc(user.uid).set({
+        name: name,
+        email: email
+      });
+    })
+    .then(() => {
+        // Dados salvos no Firestore com sucesso!
+        alert("Conta criada com sucesso! Por favor, faça o login.");
+        showLoginLink.click();
+    })
+    .catch((error) => alert("Erro ao criar conta: " + error.message));
+});
   </script>
