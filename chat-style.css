@@ -1,5 +1,7 @@
 /* Estilos para chat.html */
-
+head {
+  background-color: #A94442;
+}
 #messages-container {
   border: 1px solid #ddd;
   background-color: #f9f9f9;
