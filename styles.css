@@ -77,13 +77,22 @@ button#btnpix {
 }
 #btninicio {
     align-items: center;
+    justify-content: center;
+    justify-items: center;
 }
 #btnplanos {
     align-items: center;
+    justify-content: center;
+    justify-items: center;
 }
 #btnacervos {
     align-items: center;
+    justify-content: center;
+    justify-items: center;
 }
 #btncontato {
     align-items: center;
+    justify-content: center;
+    justify-items: center;
+
 }
