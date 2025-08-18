@@ -27,7 +27,7 @@ const checkbox1 = document.getElementById('checkbox1');
 const checkbox2 = document.getElementById('checkbox2');
 
 // Adiciona um "listener" para o evento 'change' do primeiro checkbox
-checkbox1.document.addEventListener('change', function() {
+checkbox1.addEventListener('change', function() {
   if (this.checked) {
     // Se o checkbox1 estiver marcado, desabilita o checkbox2
     checkbox2.disabled = true;
@@ -38,7 +38,7 @@ checkbox1.document.addEventListener('change', function() {
 });
 
 // Adiciona um "listener" para o evento 'change' do segundo checkbox
-checkbox2.document.addEventListener('change', function() {
+checkbox2.addEventListener('change', function() {
   if (this.checked) {
     // Se o checkbox2 estiver marcado, desabilita o checkbox1
     checkbox1.disabled = true;
