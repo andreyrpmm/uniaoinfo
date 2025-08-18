@@ -159,6 +159,25 @@ button#btnpix {
   transform: translateY(-2px); /* Efeito de "levantar" o botão */
 }
 .btn-header {
-   background-color: #8c3232; /* Um tom mais escuro ao passar o mouse */
+  color: rgb(0, 0, 0);
+  background-color: #f3f3f3; /* Um tom mais escuro ao passar o mouse */
   transform: translateY(-2px); /* Efeito de "levantar" o botão */
+  padding: 8px 16px; /* Espaçamento interno (altura e largura) */
+  text-align: center;
+  text-decoration: none; /* Remove o sublinhado do link */
+  font-weight: bold;
+  border-radius: 5px; /* Bordas arredondadas */
+  border: none; /* Remove qualquer borda padrão */
+  cursor: pointer;
+}
+.subscribe-button {
+
+  padding: 10px 20px;
+  background-color: #8b0000;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
