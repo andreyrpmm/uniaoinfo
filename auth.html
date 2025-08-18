@@ -6,10 +6,7 @@
   <title>Acesso - União Literária</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Estilo simples para esconder o formulário que não está ativo */
-    .hide {
-      display: none;
-    }
+    .hide { display: none; }
   </style>
 </head>
 <body>
@@ -59,28 +56,30 @@
   <p>© União Literária 2025</p>
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script type="module">
+  // Importa as funções que vamos precisar dos SDKs do Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-<script>
   // ===================================================================
   // COLE SUAS CHAVES REAIS DO FIREBASE AQUI
-  const firebaseConfig = {
-    apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
-    authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
-    projectId: "uniaoliteraria-1a1e3",
-   storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
-    messagingSenderId: "141287274557",
-    appId: "1:141287274557:web:824de4b0801cf329f29254",
-    measurementId: "G-Y1GTM2TG6T"
+ const firebaseConfig = {
+  apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+  authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+  projectId: "uniaoliteraria-1a1e3",
+  storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+  messagingSenderId: "141287274557",
+  appId: "1:141287274557:web:824de4b0801cf329f29254",
+  measurementId: "G-Y1GTM2TG6T"
 };
   // ===================================================================
 
-  // Inicialização
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+  // Inicializa o Firebase
+  const app = initializeApp(firebaseConfig);
+  // Pega as instâncias dos serviços usando a nova sintaxe
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
   // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
   const loginContainer = document.getElementById('login-container');
@@ -106,7 +105,8 @@
     e.preventDefault();
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
-    auth.signInWithEmailAndPassword(email, password)
+    
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         alert("Login realizado com sucesso!");
         window.location.href = "index.html";
@@ -122,10 +122,12 @@
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
     
-    auth.createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        return db.collection("users").doc(user.uid).set({
+        // Cria a referência do documento e salva os dados
+        const userDocRef = doc(db, "users", user.uid);
+        return setDoc(userDocRef, {
           name: name,
           email: email
         });
@@ -137,5 +139,6 @@
       .catch((error) => alert("Erro ao criar conta: " + error.message));
   });
 </script>
+
 </body>
 </html>
