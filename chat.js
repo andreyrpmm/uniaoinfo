@@ -33,7 +33,7 @@ auth.onAuthStateChanged(async user => { // Adicionamos async aqui
     startRealtimeChat(user, userName);
     messageForm.style.display = 'flex';
   } else {
-    alert("Você precisa possuir uma assinatura para acessar o chat! Faça login e prossiga com a assinatura para desfrutar de nossos serviços!");
+    alert("Você precisa possuir uma assinatura para acessar o chat! Faça login ou registre-se e prossiga com a assinatura para desfrutar de nossos serviços!");
     window.location.href = 'auth.html';
   }
 });
