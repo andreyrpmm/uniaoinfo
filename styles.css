@@ -1,5 +1,5 @@
 
-/* estilo geral - tons quentes */
+
 :root{
     --burgundy:#8b0000;
     --terra:#a0522d;
@@ -10,38 +10,72 @@
 *{box-sizing:border-box}
 body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background-color:#fff8f0;color:var(--text);}
 .header {
-  display: flex; /* Transforma o cabeçalho em um container flexível */
-  justify-content: space-between; /* Empurra os itens para as extremidades */
-  align-items: center; /* Alinha os itens verticalmente no centro */
-  padding: 15px 30px; /* Adiciona um espaçamento interno (ajuste se necessário) */
-  background-color: #5D2B1E; /* Cor de fundo marrom/vermelho (ajuste para sua cor exata) */
-  color: white; /* Cor do texto */
-}
-.header .logo-container {
-  /* Mantém o logo à esquerda */
-  flex: 1; 
-}
-.header nav {
-  flex: 2; /* Faz a navegação ocupar mais espaço no centro */
-  text-align: center; /* Centraliza o texto dentro da área da navegação */
-}
-.header nav ul {
-  display: inline-flex; /* Alinha os itens da lista horizontalmente */
-  list-style: none; /* Remove as bolinhas da lista */
-  margin: 0;
-  padding: 0;
-  gap: 20px; /* Cria um espaço entre os links */
+  display: flex;              
+  justify-content: space-between;
+  align-items: center;         
+  padding: 10px 30px;          
+  background-color: #3f1b1b;   
+  color: white;                 
+  width: 100%;                  
+  box-sizing: border-box;       
 }
 
-.header nav a {
+
+.header-left, .header-center, .header-right {
+  flex: 1; 
+}
+
+
+.header-left {
+  text-align: left; 
+}
+.header-left h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.header-left p {
+  margin: 0;
+  font-size: 12px;
+  color: #f0e6e6; 
+}
+
+
+.header-center {
+  text-align: center;
+}
+
+.header-center ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; 
+  display: inline-flex;
+  gap: 30px; 
+}
+
+.header-center a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-weight: bold;
 }
-.header h1{margin:0;font-size:28px;letter-spacing:1px}
+
+
+.header-right {
+  text-align: right;
+}
+
+
+#logout-button {
+  background-color: #A94442;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/*.header h1{margin:0;font-size:28px;letter-spacing:1px}
 .header p{margin:6px 0 0;}
-/* nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap} 
-nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;} */
+nav{background:var(--terra);display:flex;justify-content:center;gap:20px;padding:12px 10px;flex-wrap:wrap} 
+nav a{color:white;text-decoration:none;font-weight:600;padding:6px 10px;border-radius:6px;}*/
 .container{max-width:1100px;margin:25px auto;padding:0 15px;}
 .hero{background: url(uniaoliteraria_assets/Gemini_Generated_Image_7vo9377vo9377vo9.png) ;padding:30px;border-radius:10px;border:1px solid #eed7c1;text-align:center}
 .plans{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:20px}
