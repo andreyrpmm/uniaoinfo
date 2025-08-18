@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,13 +12,12 @@
     }
   </style>
 </head>
-
 <body>
-  <header class="header">
-    <h1>União Literária</h1>
-  </header>
+<header class="header">
+  <h1>União Literária</h1>
+</header>
 
-  <main class="container">
+<main class="container">
   <section id="login-container">
     <h2>Área do Assinante</h2>
     <form id="loginForm">
@@ -57,30 +55,32 @@
   </section>
 </main>
 
-  <footer class="footer">
-    <p>© União Literária 2025</p>
-  </footer>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<footer class="footer">
+  <p>© União Literária 2025</p>
+</footer>
 
-  <script>
-    // ===================================================================
-    // COLE SUAS CHAVES DO FIREBASE AQUI
-    const firebaseConfig = {
-      apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
-      authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
-      projectId: "uniaoliteraria-1a1e3",
-      storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
-      messagingSenderId: "141287274557",
-      appId: "1:141287274557:web:824de4b0801cf329f29254",
-      measurementId: "G-Y1GTM2TG6T"
-    };
-    // ===================================================================
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-    // Inicialização
-    firebase.initializeApp(firebaseConfig);
+<script>
+  // ===================================================================
+  // COLE SUAS CHAVES REAIS DO FIREBASE AQUI
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+    authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+    projectId: "uniaoliteraria-1a1e3",
+   storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+    messagingSenderId: "141287274557",
+    appId: "1:141287274557:web:824de4b0801cf329f29254",
+    measurementId: "G-Y1GTM2TG6T"
+};
+  // ===================================================================
+
+  // Inicialização
+  firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  const db = firebase.firestore(); // <-- A LINHA QUE ESTAVA FALTANDO
+  const db = firebase.firestore();
 
   // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
   const loginContainer = document.getElementById('login-container');
@@ -125,7 +125,6 @@
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        // Agora a variável "db" existe e esta linha vai funcionar
         return db.collection("users").doc(user.uid).set({
           name: name,
           email: email
