@@ -118,3 +118,19 @@ auth.onAuthStateChanged((user) => {
         console.error("Erro ao fazer logout:", error);
       });
   });
+  const forgotPasswordLink = document.getElementById('forgot-password-link');
+if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = prompt("Por favor, digite o e-mail da sua conta para redefinir a senha:");
+        if (email) {
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert("Se uma conta existir para este e-mail, um link de redefinição de senha foi enviado.");
+                })
+                .catch((error) => {
+                    alert("Ocorreu um erro: " + error.message);
+                });
+        }
+    });
+}
