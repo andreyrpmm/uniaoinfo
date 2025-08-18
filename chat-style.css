@@ -1,0 +1,64 @@
+/* Estilos para chat.html */
+
+#messages-container {
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  height: 50vh; /* 50% da altura da tela */
+  overflow-y: scroll;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.chat-message {
+  background-color: #e9e9eb;
+  padding: 8px 12px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  clear: both;
+  float: left; /* Mensagens dos outros ficam na esquerda */
+}
+
+.chat-message.my-message {
+  background-color: #007bff; /* Cor diferente para suas mensagens */
+  color: white;
+  float: right; /* Suas mensagens ficam na direita */
+}
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.message-time {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.my-message .message-time {
+  color: #e0e0e0;
+}
+
+.message-text {
+  margin: 0;
+  word-wrap: break-word; /* Garante que textos longos quebrem a linha */
+}
+
+#new-message-form {
+  display: flex;
+  gap: 10px;
+}
+
+#message-input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 20px;
+}

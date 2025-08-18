@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,114 +13,133 @@
     }
   </style>
 </head>
+
 <body>
-<header class="header">
-  <h1>União Literária</h1>
-</header>
+  <header class="header">
+    <h1>União Literária</h1>
+  </header>
 
-<main class="container">
-  <section id="login-container">
-    <h2>Área do Assinante</h2>
-    <form id="loginForm">
-      <div class="form-control">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" required>
-      </div>
-      <div class="form-control">
-        <label for="login-password">Senha</label>
-        <input type="password" id="login-password" required>
-      </div>
-      <button class="btn" type="submit">Entrar</button>
-    </form>
-    <p>Ainda não tem conta? <a href="#" id="show-register-link">Cadastre-se aqui</a></p>
-  </section>
+  <main class="container">
+    <section id="login-container">
+      <h2>Área do Assinante</h2>
+      <form id="loginForm">
+        <div class="form-control">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required>
+        </div>
+        <div class="form-control">
+          <label for="login-password">Senha</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+      <p>Ainda não tem conta? <a href="#" id="show-register-link">Cadastre-se aqui</a></p>
+    </section>
 
-  <section id="register-container" class="hide">
-    <h2>Crie sua conta</h2>
-    <form id="registerForm">
-      <div class="form-control">
-        <label for="register-email">Email</label>
-        <input type="email" id="register-email" required>
-      </div>
-      <div class="form-control">
-        <label for="register-password">Senha</label>
-        <input type="password" id="register-password" required>
-      </div>
-      <button class="btn" type="submit">Registrar</button>
-    </form>
-    <p>Já tem uma conta? <a href="#" id="show-login-link">Faça o login</a></p>
-  </section>
-</main>
+    <section id="register-container" class="hide">
+      <h2>Crie sua conta</h2>
+      <form id="registerForm">
+        <div class="form-control">
+          <label for="register-name">Nome</label>
+          <input type="text" id="register-name" required>
+        </div>
+        <div class="form-control">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" required>
+        </div>
+        <div class="form-control">
+          <label for="register-password">Senha</label>
+          <input type="password" id="register-password" required>
+        </div>
+        <button class="btn" type="submit">Registrar</button>
+      </form>
+      <p>Já tem uma conta? <a href="#" id="show-login-link">Faça o login</a></p>
+    </section>
+  </main>
 
-<footer class="footer">
-  <p>© União Literária 2025</p>
-</footer>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <footer class="footer">
+    <p>© União Literária 2025</p>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<script>
-  // ===================================================================
-  // COLE SUAS CHAVES DO FIREBASE AQUI
-  const firebaseConfig = {
-    apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
-    authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
-    projectId: "uniaoliteraria-1a1e3",
-    storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
-    messagingSenderId: "141287274557",
-    appId: "1:141287274557:web:824de4b0801cf329f29254",
-    measurementId: "G-Y1GTM2TG6T"
-};
-  // ===================================================================
+  <script>
+    // ===================================================================
+    // COLE SUAS CHAVES DO FIREBASE AQUI
+    const firebaseConfig = {
+      apiKey: "AIzaSyD0EFysx1LOdplLslcERJe8j2OPqWjbdYs",
+      authDomain: "uniaoliteraria-1a1e3.firebaseapp.com",
+      projectId: "uniaoliteraria-1a1e3",
+      storageBucket: "uniaoliteraria-1a1e3.firebasestorage.app",
+      messagingSenderId: "141287274557",
+      appId: "1:141287274557:web:824de4b0801cf329f29254",
+      measurementId: "G-Y1GTM2TG6T"
+    };
+    // ===================================================================
 
-  // Inicialização
-  firebase.initializeApp(firebaseConfig);
+    // Inicialização
+    firebase.initializeApp(firebaseConfig);
 
-  // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
-  const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
+    // CORREÇÃO AQUI: A forma de chamar o serviço de autenticação mudou
+    const auth = firebase.auth(); // Esta linha está correta com os scripts "compat"
 
-  // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
-  const loginContainer = document.getElementById('login-container');
-  const registerContainer = document.getElementById('register-container');
-  const showRegisterLink = document.getElementById('show-register-link');
-  const showLoginLink = document.getElementById('show-login-link');
+    // --- LÓGICA PARA ALTERNAR ENTRE FORMULÁRIOS ---
+    const loginContainer = document.getElementById('login-container');
+    const registerContainer = document.getElementById('register-container');
+    const showRegisterLink = document.getElementById('show-register-link');
+    const showLoginLink = document.getElementById('show-login-link');
 
-  showRegisterLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    loginContainer.classList.add('hide');
-    registerContainer.classList.remove('hide');
-  });
+    showRegisterLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginContainer.classList.add('hide');
+      registerContainer.classList.remove('hide');
+    });
 
-  showLoginLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    registerContainer.classList.add('hide');
-    loginContainer.classList.remove('hide');
-  });
+    showLoginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      registerContainer.classList.add('hide');
+      loginContainer.classList.remove('hide');
+    });
 
-  // --- LÓGICA DO LOGIN ---
-  const loginForm = document.getElementById("loginForm");
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        alert("Login realizado com sucesso!");
-        window.location.href = "index.html";
-      })
-      .catch((error) => alert("Erro ao fazer login: " + error.message));
-  });
+    // --- LÓGICA DO LOGIN ---
+    const loginForm = document.getElementById("loginForm");
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          alert("Login realizado com sucesso!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => alert("Erro ao fazer login: " + error.message));
+    });
 
-  // --- LÓGICA DO REGISTRO ---
-  const registerForm = document.getElementById("registerForm");
-  registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("register-email").value;
-    const password = document.getElementById("register-password").value;
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+    // --- LÓGICA DO REGISTRO ---
+    const registerForm = document.getElementById("registerForm");
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("register-name").value; // Pega o nome
+  const email = document.getElementById("register-email").value;
+  const password = document.getElementById("register-password").value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Usuário criado com sucesso na autenticação!
+      const user = userCredential.user;
+
+      // AGORA, SALVAMOS O NOME DO USUÁRIO NO FIRESTORE
+      // Usamos o ID do usuário (user.uid) como ID do documento
+      return db.collection("users").doc(user.uid).set({
+        name: name,
+        email: email
+      });
+    })
+    .then(() => {
+        // Dados salvos no Firestore com sucesso!
         alert("Conta criada com sucesso! Por favor, faça o login.");
         showLoginLink.click();
-      })
-      .catch((error) => alert("Erro ao criar conta: " + error.message));
-  });
-</script>
+    })
+    .catch((error) => alert("Erro ao criar conta: " + error.message));
+});
+  </script>

@@ -12,21 +12,25 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// --- PEGA OS ELEMENTOS DO HTML ---
+// --- Elementos do HTML ---
 const bookTitleElement = document.getElementById('book-title');
 const messagesContainer = document.getElementById('messages-container');
 const messageForm = document.getElementById('new-message-form');
 const messageInput = document.getElementById('message-input');
 
-// --- PEGA O ID DO LIVRO DA URL ---
+// --- Pega o ID do Livro da URL ---
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('bookId');
 bookTitleElement.textContent = `Chat do Livro: ${bookId.replace(/-/g, ' ')}`;
 
-// --- VERIFICA SE O USUÁRIO ESTÁ LOGADO ---
-auth.onAuthStateChanged(user => {
+// --- Lógica Principal do Chat ---
+auth.onAuthStateChanged(async user => { // Adicionamos async aqui
   if (user) {
-    startRealtimeChat(user);
+    // Busca o nome do usuário no Firestore
+    const userDoc = await db.collection("users").doc(user.uid).get();
+    const userName = userDoc.exists ? userDoc.data().name : user.email; // Se não achar o nome, usa o email
+
+    startRealtimeChat(user, userName);
     messageForm.style.display = 'flex';
   } else {
     alert("Você precisa estar logado para acessar o chat!");
@@ -34,23 +38,34 @@ auth.onAuthStateChanged(user => {
   }
 });
 
-function startRealtimeChat(currentUser) {
-  // === CORREÇÃO AQUI ===
-  // 1. Uma referência APENAS para a coleção, para podermos ADICIONAR mensagens
+function startRealtimeChat(currentUser, currentUserName) {
   const messagesCollectionRef = db.collection('chats').doc(bookId).collection('messages');
-
-  // 2. Uma consulta para LER as mensagens, com a ordenação por timestamp
   const messagesQuery = messagesCollectionRef.orderBy('timestamp');
-  // ======================
 
-  // "onSnapshot" agora usa a consulta (messagesQuery)
   messagesQuery.onSnapshot(snapshot => {
     messagesContainer.innerHTML = '';
     snapshot.forEach(doc => {
       const message = doc.data();
+      
+      // Formata o timestamp para Hora:Minuto
+      const messageTime = message.timestamp ? message.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
       const messageElement = document.createElement('div');
       messageElement.classList.add('chat-message');
-      messageElement.innerHTML = `<strong>${message.userEmail}:</strong> ${message.text}`;
+      
+      // Adiciona uma classe especial se a mensagem for do usuário atual
+      if (message.userId === currentUser.uid) {
+        messageElement.classList.add('my-message');
+      }
+
+      // Monta o HTML da mensagem com NOME e HORA
+      messageElement.innerHTML = `
+        <div class="message-info">
+          <span class="user-name">${message.userName}</span>
+          <span class="message-time">${messageTime}</span>
+        </div>
+        <p class="message-text">${message.text}</p>
+      `;
       messagesContainer.appendChild(messageElement);
     });
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -61,20 +76,16 @@ function startRealtimeChat(currentUser) {
     const messageText = messageInput.value;
     if (messageText.trim() === '') return;
 
-    // === CORREÇÃO AQUI ===
-    // Usamos a referência da coleção (messagesCollectionRef) para ADICIONAR a nova mensagem
+    // Salva a mensagem com o nome do usuário
     messagesCollectionRef.add({
       text: messageText,
-      userEmail: currentUser.email,
+      userName: currentUserName, // Salva o nome ao invés do email
       userId: currentUser.uid,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
-    // ======================
     .then(() => {
       messageInput.value = '';
     })
-    .catch(error => {
-      console.error("Erro ao enviar mensagem: ", error);
-    });
+    .catch(error => console.error("Erro ao enviar mensagem: ", error));
   });
 }
