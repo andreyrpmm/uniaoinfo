@@ -28,7 +28,9 @@ body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;backg
 
 /* Alinha o conteúdo de cada bloco horizontalmente */
 .header-left {
-  justify-content: flex-start; /* Alinha à esquerda */
+  flex-direction: column; /* ESSA É A MUDANÇA PRINCIPAL: empilha o título e o subtítulo */
+  align-items: flex-start; /* Agora isso alinha os dois à esquerda */
+  justify-content: center; /* E isso centraliza o conjunto na vertical */
 }
 .header-center {
   justify-content: center; /* Alinha ao centro */
