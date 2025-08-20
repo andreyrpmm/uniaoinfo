@@ -88,4 +88,33 @@ subscribeButtons.forEach(button => {
     });
 });
 
-// (A lógica do "Esqueci minha senha" pode continuar aqui se você tiver um script.js unificado)
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+
+    // Só executa se a barra de busca existir na página atual
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const allBooks = document.querySelectorAll('.book-card');
+
+            allBooks.forEach(book => {
+                const titleElement = book.querySelector('h4');
+                const authorElement = book.querySelector('.book-author');
+
+                // Verifica se os elementos de título e autor existem antes de ler
+                if (titleElement && authorElement) {
+                    const title = titleElement.innerText.toLowerCase();
+                    const author = authorElement.innerText.toLowerCase();
+
+                    // Se o termo de busca estiver no título OU no autor, mostra o livro
+                    if (title.includes(searchTerm) || author.includes(searchTerm)) {
+                        book.style.display = 'block';
+                    } else {
+                        // Se não, esconde o livro
+                        book.style.display = 'none';
+                    }
+                }
+            });
+        });
+    }
+});
