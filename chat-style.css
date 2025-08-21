@@ -2,91 +2,97 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4; /* Um tom de fundo claro e neutro */
+    background: linear-gradient(180deg, #fdfbfb, #ebedee); /* fundo mais suave */
     color: #333;
 }
 
 .container {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #book-title {
-    color: #2c3e50; /* Um azul escuro elegante */
+    color: #2c3e50;
     margin-bottom: 15px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 #messages-container {
     border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    height: 50vh;
+    background: #fdfdfd;
+    height: 55vh;
     overflow-y: auto;
     padding: 15px;
     margin-bottom: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column; /* Garante que as mensagens mais recentes fiquem embaixo */
+    flex-direction: column;
 }
 
+/* estilo base das mensagens */
 .chat-message {
-    background-color: #e9e9eb; /* Um cinza claro para as mensagens dos outros */
-    color: #333;
-    padding: 10px 15px;
+    padding: 12px 16px;
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     max-width: 70%;
     clear: both;
     float: left;
-    position: relative; /* Para posicionar a hora */
+    position: relative;
+    font-size: 0.95em;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    animation: fadeIn 0.4s ease-in-out;
 }
 
+/* minhas mensagens (direita) */
 .chat-message.my-message {
-    background-color: #3498db; /* Um azul mais vivo para suas mensagens */
+    background: #3498db;
     color: #fff;
     float: right;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 20px;
 }
 
+/* mensagens por usuário */
+.chat-message.andrey { background-color: #d0ebff; }
+.chat-message.eligessia { background-color: #f3d9fa; }
+.chat-message.igor { background-color: #d3f9d8; }
+.chat-message.andre { background-color: #ffe8a3; }
+.chat-message.kailane { background-color: #ffd6e0; }
+
+/* destaque do nome e hora */
 .message-info {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-size: 0.8em;
-    color: #777;
+    font-weight: bold;
+    color: #555;
 }
 
 .my-message .message-info {
-    color: #d6e9f8;
-    flex-direction: row-reverse; /* Inverte a ordem para minhas mensagens */
-}
-
-.user-name {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.my-message .user-name {
-    margin-left: 5px;
-    margin-right: 0;
+    color: #e0f0ff;
+    flex-direction: row-reverse;
 }
 
 .message-time {
     font-style: italic;
+    font-weight: normal;
+    color: #777;
 }
 
 .message-text {
     margin: 0;
     word-wrap: break-word;
-    font-size: 1em;
-    line-height: 1.4;
 }
 
+/* input e botão */
 #new-message-form {
     display: flex;
     gap: 10px;
@@ -95,22 +101,37 @@ body {
 #message-input {
     flex-grow: 1;
     border: 1px solid #ccc;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-radius: 25px;
     font-size: 1em;
+    outline: none;
+    transition: 0.2s;
+}
+
+#message-input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52,152,219,0.3);
 }
 
 #new-message-form button {
-    background-color: #3498db; /* Botão azul para enviar */
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 25px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 #new-message-form button:hover {
-    background-color: #2980b9;
+    background: linear-gradient(135deg, #2980b9, #1f6391);
+    transform: scale(1.05);
+}
+
+/* animação suave das mensagens */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
